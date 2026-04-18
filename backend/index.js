@@ -24,12 +24,11 @@ app.use(express.json());
 // app.use(cors({
 //     origin:"*"
 // }));
+
 app.use(cors({
   origin: "*",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
+  methods: ["GET", "POST", "PUT", "DELETE"]
 }));
-app.options("*", cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
