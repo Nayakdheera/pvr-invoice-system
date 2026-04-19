@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate(); 
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -67,12 +69,15 @@ export default function Login() {
       <button className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
         Login
       </button>
-
-      <Link to="/register">
-        <p style={{ marginTop: "10px", color: "blue", cursor: "pointer" }}>
-          Don't have an account? Register
-        </p>
-    </Link>
+      <p className="text-center mt-4 text-sm">
+        Don’t have an account?{" "}
+        <span
+          onClick={() => navigate("/register")}
+          className="text-blue-600 cursor-pointer hover:underline"
+        >
+          Register
+        </span>
+      </p>
 
     </form>
   </div>
