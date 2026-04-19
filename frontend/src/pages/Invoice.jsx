@@ -136,11 +136,12 @@ printWindow.document.write(`
 };
 
 return (
-  <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center p-4">
+  <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center p-4 print:text-base print:bg-white print:p-0 ">
     
-    <div className="w-full max-w-xl bg-white rounded-2xl shadow-xl p-8">
+    <div className="w-full max-w-xl bg-white rounded-2xl shadow-xl p-8 print:max-w-full print:w-full print:p-6 
+                print:shadow-none print:rounded-none print:text-base print:text-[16px] print:leading-relaxed print:text-black">
       
-      <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+      <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center print:text-black">
         Add Invoice
       </h2>
 
@@ -150,70 +151,70 @@ return (
           name="sno"
           placeholder="S NO"
           onChange={handleChange}
-          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
+          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none print:text-black print:text-[15px]"
         />
 
         <input
           name="invoiceNo"
           placeholder="Invoice No"
           onChange={handleChange}
-          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
+          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none print:text-black print:text-[15px]"
         />
 
         <input
           name="product"
           placeholder="Product"
           onChange={handleChange}
-          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
+          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none print:text-black print:text-[15px]"
         />
 
         <input
           name="date"
           type="date"
           onChange={handleChange}
-          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
+          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none print:text-black print:text-[15px]"
         />
 
         <input
           name="vehicleNumber"
           placeholder="Vehicle Number"
           onChange={handleChange}
-          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
+          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none print:text-black print:text-[15px]"
         />
 
         <input
           name="material"
-          placeholder="Material"
+          placeholder="Material "
           onChange={handleChange}
-          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
+          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none print:text-black print:text-[15px]"
         />
 
         <input
           name="supplierName"
           placeholder="Supplier Name"
           onChange={handleChange}
-          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
+          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none  print:text-black print:text-[15px]"
         />
 
         <input
           name="materialName"
           placeholder="Material Name"
           onChange={handleChange}
-          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
+          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none print:text-black print:text-[15px]"
         />
 
         <input
           name="noOfPlates"
           placeholder="No of Plates"
           onChange={handleChange}
-          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
+          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none  print:text-black print:text-[15px]"
         />
 
         <input
           name="remarks"
           placeholder="Remarks"
           onChange={handleChange}
-          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
+          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none print:text-black print:text-[15px]"
         />
 
         <button
