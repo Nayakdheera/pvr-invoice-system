@@ -11,7 +11,9 @@ export const createInvoice = async (req, res) => {
     await invoice.save();
 
     // generate QR
-    const qrData = `${process.env.FRONTEND_URL}/invoice/${invoice._id}`;
+
+    // const qrData = `${process.env.FRONTEND_URL}/invoice/${invoice._id}`;
+    const qrData = `https://pvr-invoice-system.vercel.app/invoice/${invoice._id}`;
     const qrImage = await QRCode.toDataURL(qrData);
 
     // save QR
