@@ -5,7 +5,7 @@ const invoiceSchema = new mongoose.Schema({
   sno:String,
   date: { type: String },
   vehicleNumber: String,
-  product:String,
+  msPlateCode:String,
   poNumber: String,
   descriptionOfMaterial: String,
   supplierName: String,
