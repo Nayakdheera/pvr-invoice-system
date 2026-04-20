@@ -1,9 +1,11 @@
 
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useRef } from "react";
+// import { useState } from "react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import logo from "../assets/pvr logo.png";
+// import logo from "../assets/pvr logo.png";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -52,10 +54,51 @@ export default function Dashboard() {
   };
 
   // 📄 DOWNLOAD PDF
-  const downloadPDF = async () => {
-    const element = document.getElementById("invoice");
+  // const downloadPDF = async () => {
+  //   const element = document.getElementById("invoice");
 
-    const canvas = await html2canvas(element, { scale: 2 });
+  //   const canvas = await html2canvas(element, { scale: 2 });
+  //   const imgData = canvas.toDataURL("image/png");
+
+  //   const pdf = new jsPDF("p", "mm", "a4");
+
+  //   const imgWidth = 190;
+  //   const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+  //   pdf.addImage(imgData, "PNG", 10, 10, imgWidth, imgHeight);
+  //   pdf.save("invoice.pdf");
+  // };
+  const downloadPDF = async () => {
+  const element = document.getElementById("invoice");
+
+  if (!element) {
+    alert("Invoice not found!");
+    return;
+  }
+
+  try {
+    // 🔥 CLONE ELEMENT (clean copy)
+    const clone = element.cloneNode(true);
+
+    // 🔥 REMOVE ALL CLASSES (this removes Tailwind oklch issue)
+    clone.querySelectorAll("*").forEach((el) => {
+      el.className = "";
+    });
+
+    // 🔥 APPLY SAFE STYLES
+    clone.style.background = "#ffffff";
+    clone.style.color = "#000000";
+    clone.style.padding = "20px";
+
+    document.body.appendChild(clone);
+
+    const canvas = await html2canvas(clone, {
+      scale: 2,
+      useCORS: true,
+    });
+
+    document.body.removeChild(clone);
+
     const imgData = canvas.toDataURL("image/png");
 
     const pdf = new jsPDF("p", "mm", "a4");
@@ -65,7 +108,162 @@ export default function Dashboard() {
 
     pdf.addImage(imgData, "PNG", 10, 10, imgWidth, imgHeight);
     pdf.save("invoice.pdf");
+
+  } catch (err) {
+    console.error("PDF ERROR:", err);
+    alert("PDF failed");
+  }
+};
+
+  // print QR
+const printQR = () => {
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+
+  const qrImg = new Image();
+  const logoImg = new Image();
+
+  qrImg.crossOrigin = "anonymous";
+  logoImg.crossOrigin = "anonymous";
+
+  qrImg.src = invoice.qr;
+  logoImg.src = logo;
+
+  qrImg.onload = () => {
+    canvas.width = 400;
+    canvas.height = 500;
+
+    // background
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    logoImg.onload = () => {
+      // logo
+      ctx.drawImage(logoImg, 150, 20, 100, 60);
+
+      // title
+      ctx.fillStyle = "black";
+      ctx.font = "bold 18px Arial";
+      ctx.textAlign = "center";
+      ctx.fillText("PVR Projects Limited", 200, 100);
+
+      // QR
+      ctx.drawImage(qrImg, 100, 120, 200, 200);
+
+      // invoice number
+      ctx.font = "14px Arial";
+      ctx.fillText(`S NO: ${invoice.sno}`, 200, 350);
+
+      // 👉 PRINT
+      const imgData = canvas.toDataURL("image/png");
+
+      const win = window.open("", "_blank");
+
+      win.document.write(`
+        <html>
+          <head>
+            <title>Print QR</title>
+            <style>
+              body {
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+              }
+              img {
+                width: 300px;
+              }
+            </style>
+          </head>
+          <body>
+            <img src="${imgData}" />
+          </body>
+        </html>
+      `);
+
+      win.document.close();
+      win.focus();
+      win.print();
+    };
+
+    // fallback if logo fails
+    logoImg.onerror = () => {
+      ctx.drawImage(qrImg, 100, 120, 200, 200);
+
+      const imgData = canvas.toDataURL("image/png");
+
+      const win = window.open("", "_blank");
+
+      win.document.write(`<img src="${imgData}" style="width:300px;" />`);
+      win.document.close();
+      win.print();
+    };
   };
+};
+
+// download qr
+// const downloadQR = (qr) => {
+//   const link = document.createElement("a");
+//   link.href = qr;
+//   link.download = "qr-code.png";
+//   document.body.appendChild(link);
+//   link.click();
+//   document.body.removeChild(link);
+// };
+const downloadQR = () => {
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+
+  const qrImg = new Image();
+  const logoImg = new Image();
+
+  // ✅ IMPORTANT
+  qrImg.crossOrigin = "anonymous";
+  logoImg.crossOrigin = "anonymous";
+
+  qrImg.src = invoice.qr;
+  logoImg.src = logo;
+
+  qrImg.onload = () => {
+    canvas.width = 400;
+    canvas.height = 500;
+
+    // background
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    logoImg.onload = () => {
+      // logo
+      ctx.drawImage(logoImg, 150, 20, 100, 60);
+
+      // company name
+      ctx.fillStyle = "black";
+      ctx.font = "bold 18px Arial";
+      ctx.textAlign = "center";
+      ctx.fillText("PVR Projects Limited", 200, 100);
+
+      // QR
+      ctx.drawImage(qrImg, 100, 120, 200, 200);
+
+      // download
+      const link = document.createElement("a");
+      link.download = "invoice-qr.png";
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    };
+
+    // ⚠️ fallback if logo fails
+    logoImg.onerror = () => {
+      ctx.drawImage(qrImg, 100, 120, 200, 200);
+
+      const link = document.createElement("a");
+      link.download = "invoice-qr.png";
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    };
+  };
+};
 
   return (
     <div className="flex min-h-screen bg-gray-100">
@@ -93,6 +291,40 @@ export default function Dashboard() {
 
         {/* SEARCH */}
         <div className="bg-white p-6 rounded-xl shadow mb-6">
+          {invoice && (
+  <div className="mt-6 text-center border-t pt-6">
+
+    <h3 className="text-lg font-semibold mb-3 text-green-600">
+      ✅ Invoice Found
+    </h3>
+
+    {invoice.qr && (
+      <img
+        src={invoice.qr}
+        alt="QR"
+        className="w-40 mx-auto mb-4"
+      />
+    )}
+
+    <div className="flex justify-center gap-4">
+      
+      <button
+        onClick={printQR}
+        className="bg-green-500 text-white px-4 py-2 rounded"
+      >
+        Print QR
+      </button>
+
+      <button
+        onClick={() => downloadQR(invoice.qr)}
+        className="bg-blue-500 text-white px-4 py-2 rounded"
+      >
+        Download QR 
+      </button>
+    </div>
+
+  </div>
+)}
           <h3 className="mb-3 font-semibold">Search Invoice</h3>
 
           <div className="flex gap-3">
@@ -121,7 +353,7 @@ export default function Dashboard() {
         {invoice && (
           <div className="max-w-4xl mx-auto mt-8">
 
-            <div id="invoice" className="bg-white shadow-xl rounded-xl p-8">
+            <div id="invoice" className="p-8"  style={{ background: "white", borderRadius: "12px", boxShadow: "0 4px 20px rgba(0,0,0,0.1)" }}>
 
               {/* HEADER */}
               <div className="flex items-center gap-4 mb-6 border-b pb-4">
@@ -238,9 +470,9 @@ export default function Dashboard() {
 
               <button
                 onClick={downloadPDF}
-                // className="bg-blue-500 text-white px-5 py-2 rounded"
+                className="bg-green-500 text-white px-5 py-2 rounded"
               >
-                {/* Download PDF */}
+                Download PDF
               </button>
             </div>
 
