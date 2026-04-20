@@ -28,8 +28,9 @@ export default function InvoicesList() {
           <th className="p-3">Vehicle NO</th>
           <th className="p-3">Material</th>
           <th className="p-3">Supplier Name</th>
-          <th className="p-3">Material Name</th>
+          <th className="p-3">Description</th>
           <th className="p-3">No of Plates</th>
+          <th className="p-3">Weight</th>
         </tr>
       </thead>
 
@@ -43,8 +44,9 @@ export default function InvoicesList() {
             <td>{inv.vehicleNumber}</td>
             <td>{inv.material}</td>
             <td>{inv.supplierName}</td>
-            <td>{inv.materialName}</td>
+            <td>{inv.description}</td>
             <td>{inv.noOfPlates}</td>
+            <td>{inv.weight}</td>
         
             <td className="space-x-2">
               <button

@@ -12,8 +12,9 @@ export default function Invoice() {
     vehicleNumber: "",
     material:"",
     supplierName: "",
-    materialName: "",
+    description: "",
     noOfPlates: "",
+    weight: "",
     remarks: "",
   });
 
@@ -198,8 +199,8 @@ return (
         />
 
         <input
-          name="materialName"
-          placeholder="Material Name"
+          name="description"
+          placeholder="Description"
           onChange={handleChange}
           className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none print:text-black print:text-[15px]"
         />
@@ -207,6 +208,13 @@ return (
         <input
           name="noOfPlates"
           placeholder="No of Plates"
+          onChange={handleChange}
+          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none  print:text-black print:text-[15px]"
+        />
+
+        <input
+          name="weight"
+          placeholder="Weight"
           onChange={handleChange}
           className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none  print:text-black print:text-[15px]"
         />

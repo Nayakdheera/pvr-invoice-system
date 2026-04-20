@@ -102,13 +102,18 @@ export default function InvoiceDetail() {
               </div>
   
               <div>
-                <p className="text-gray-500">Material Name</p>
-                <p>{invoice.materialName}</p>
+                <p className="text-gray-500">Description</p>
+                <p>{invoice.description}</p>
               </div>
   
               <div>
                 <p className="text-gray-500">No of Plates</p>
                 <p>{invoice.noOfPlates}</p>
+              </div>
+  
+              <div>
+                <p className="text-gray-500">Weight</p>
+                <p>{invoice.weight}</p>
               </div>
   
               <div>

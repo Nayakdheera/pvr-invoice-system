@@ -117,12 +117,12 @@ export default function EditInvoice() {
           />
         </div>
 
-        {/* Material Name */}
+        {/* Description */}
         <div>
-          <label className="block text-sm text-gray-600">Material Name</label>
+          <label className="block text-sm text-gray-600">Description</label>
           <input
-            value={form.materialName}
-            onChange={(e) => setForm({ ...form, materialName: e.target.value })}
+            value={form.description}
+            onChange={(e) => setForm({ ...form, description: e.target.value })}
             className="mt-1 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
           />
         </div>
@@ -134,6 +134,17 @@ export default function EditInvoice() {
             type="number"
             value={form.noOfPlates}
             onChange={(e) => setForm({ ...form, noOfPlates: e.target.value })}
+            className="mt-1 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
+          />
+        </div>
+
+        {/* weight */}
+        <div>
+          <label className="block text-sm text-gray-600">Weight</label>
+          <input
+            type="number"
+            value={form.weight}
+            onChange={(e) => setForm({ ...form, weight: e.target.value })}
             className="mt-1 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
           />
         </div>
