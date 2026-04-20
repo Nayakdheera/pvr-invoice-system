@@ -9,11 +9,12 @@ const invoiceSchema = new mongoose.Schema({
   poNumber: String,
   descriptionOfMaterial: String,
   supplierName: String,
-  materialName: String,
+  description: String,
   material: String,
   noOfPlates: Number,
   qr: String,
   remarks:String,
+  weight: Number,
 }, { timestamps: true });
 
 export default mongoose.model("Invoice", invoiceSchema);
