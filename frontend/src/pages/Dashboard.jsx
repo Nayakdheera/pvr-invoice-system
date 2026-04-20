@@ -468,12 +468,12 @@ const downloadQR = () => {
                 Print
               </button>
 
-              <button
+              {/* <button
                 onClick={downloadPDF}
                 className="bg-green-500 text-white px-5 py-2 rounded"
               >
                 Download PDF
-              </button>
+              </button> */}
             </div>
 
           </div>
