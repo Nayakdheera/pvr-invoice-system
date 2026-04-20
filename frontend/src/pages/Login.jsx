@@ -69,7 +69,7 @@ export default function Login() {
       <button className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
         Login
       </button>
-      <p className="text-center mt-4 text-sm">
+      {/* <p className="text-center mt-4 text-sm">
         Don’t have an account?{" "}
         <span
           onClick={() => navigate("/register")}
@@ -77,7 +77,7 @@ export default function Login() {
         >
           Register
         </span>
-      </p>
+      </p> */}
 
     </form>
   </div>
