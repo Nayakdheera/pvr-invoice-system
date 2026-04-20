@@ -68,10 +68,10 @@ export default function EditInvoice() {
 
         {/* Product */}
         <div>
-          <label className="block text-sm text-gray-600">Product</label>
+          <label className="block text-sm text-gray-600">MS Plate Code</label>
           <input
-            value={form.product}
-            onChange={(e) => setForm({ ...form, product: e.target.value })}
+            value={form.msPlateCode}
+            onChange={(e) => setForm({ ...form, msPlateCode: e.target.value })}
             className="mt-1 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
           />
         </div>

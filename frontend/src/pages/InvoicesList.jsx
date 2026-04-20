@@ -23,7 +23,7 @@ export default function InvoicesList() {
         <tr>
           <th className="p-3 text-left">S NO</th>
           <th className="p-3">Invoice No</th>
-          <th className="p-3">Product</th>
+          <th className="p-3">MS Plate Code</th>
           <th className="p-3">Date</th>
           <th className="p-3">Vehicle NO</th>
           <th className="p-3">Material</th>
@@ -38,7 +38,7 @@ export default function InvoicesList() {
           <tr key={inv._id} className="border-t text-center">
             <td className="p-3">{inv.sno}</td>
             <td>{inv.invoiceNo}</td>
-            <td>{inv.product}</td>
+            <td>{inv.msPlateCode}</td>
             <td>{inv.date}</td>
             <td>{inv.vehicleNumber}</td>
             <td>{inv.material}</td>

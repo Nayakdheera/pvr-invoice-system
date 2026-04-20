@@ -77,8 +77,8 @@ export default function InvoiceDetail() {
               </div>
   
               <div>
-                <p className="text-gray-500">Product</p>
-                <p>{invoice.product || "-"}</p>
+                <p className="text-gray-500">MS Plate Code</p>
+                <p>{invoice.msPlateCode || "-"}</p>
               </div>
   
               <div>

@@ -7,7 +7,7 @@ export default function Invoice() {
   const [form, setForm] = useState({
     sno:"",
     invoiceNo: "",
-    product:"",
+    msPlateCode:"",
     date: "",
     vehicleNumber: "",
     material:"",
@@ -152,7 +152,8 @@ return (
           placeholder="S NO"
           onChange={handleChange}
           className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none print:text-black print:text-[15px]"
-        />
+      
+      />
 
         <input
           name="invoiceNo"
@@ -162,8 +163,8 @@ return (
         />
 
         <input
-          name="product"
-          placeholder="Product"
+          name="msPlateCode"
+          placeholder="MS Plate Code"
           onChange={handleChange}
           className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none print:text-black print:text-[15px]"
         />
@@ -216,6 +217,7 @@ return (
           onChange={handleChange}
           className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none print:text-black print:text-[15px]"
         />
+        
 
         <button
           type="submit"
